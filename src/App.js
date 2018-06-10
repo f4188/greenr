@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 
 import { Jumbotron } from 'reactstrap'
 
-import './App.css';
+import { Dashboard } from 'Dashboard.js'
+import { Home } from 'Home.js'
+import { Signin } from 'Signin.js'
+
+import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Greenr</h1>
-        </header>
-        <Jumbotron>
-
-        </Jumbotron>
-      </div>
-    );
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route path='/dashboard' component={Dashboard} /> 
+        <Route path='/signin' component={Signin} />
+      </Switch>
+    )
   }
 }
 

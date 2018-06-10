@@ -11,7 +11,16 @@ export default class Signin extends React.Component {
 
 			<Form>
 				<FormGroup>
-
+				<Label for="name" > Name </Label>
+				<Input type="text" name="name" id="name" />
+				</FormGroup>
+				<FormGroup>
+				<Label for="password" > Password </Label>
+				<Input type="password" name="password" id="password" />
+				</FormGroup>
+				<FormGroup>
+				<Label for="company" > Company </Label>
+				<Input type="text" name="text" id="text" />
 				</FormGroup>
 			</Form>
 			
