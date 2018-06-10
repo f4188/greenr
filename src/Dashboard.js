@@ -15,8 +15,12 @@ export default class Dashboard extends React.Component {
 	async fetchData( ) {
 
 		//url + `/api/0.1/company/${window.username}`
-		console.log("sending request:", url + `/api/0.1/company/${window.sessionStorage.getItem("username")}`)
-	    let response = await fetch( url + `/api/0.1/company/${window.sessionStorage.getItem("username")}` )
+		try {
+
+		console.log("sending request:", url + `/api/0.1/companies/${window.sessionStorage.getItem("username")}`)
+
+
+	    let response = await fetch( url + `/api/0.1/companies/${window.sessionStorage.getItem("username")}` )
 	    console.log(response)
 	    
 	    this.data = await response.json();
@@ -25,12 +29,17 @@ export default class Dashboard extends React.Component {
 		this.companyList = await response2.json()
 
 		this.setState({})
+
+		} catch (e) {
+       		console.log(e)
+       	}
 	  
 	}
 
 	componentDidMount(nextProps) {
 
-       this.fetchData()
+		//try {
+       	this.fetchData()
 
     }
 	
@@ -68,7 +77,7 @@ export default class Dashboard extends React.Component {
 					</Col>
 					</Row>
 
-					<Row>
+					<Row style={{ 'margin-top' : '10px'}}>
 					<Col>
 					
 					<Form inline>
@@ -83,7 +92,7 @@ export default class Dashboard extends React.Component {
 				</Col>
 				</Row>
 
-				<Row>
+				<Row style={{ 'margin-top' : '20px'}}>
 				<Col md={{ size: 10, offset: 2 }}>
 
 					{ eventList.map( (events, i) => {
@@ -93,7 +102,8 @@ export default class Dashboard extends React.Component {
 					      <Card body key={i}>
 					        <CardTitle> Event # {i}</CardTitle>
 					        <CardText> Some event.</CardText>
-					        <Button> Go </Button>
+					        <a href="/eventdesc"><Button color="primary"> Go </Button></a>{' '}
+					      
 					      </Card>
 					    </CardColumns>
 				      )

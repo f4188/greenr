@@ -9,6 +9,7 @@ import Event from './Event.js'
 import Dashboard from './Dashboard.js'
 import Userdashboard from './Userdashboard.js'
 import Members from './Members.js'
+import EventDesc from './EventDesc.js'
 
 class App extends Component {
 
@@ -24,6 +25,7 @@ class App extends Component {
         <Route path='/events' component={Event} />
         <Route path='/userdashboard' component={Userdashboard} />
         <Route path='/members' component={Members} />
+        <Route path="/eventdesc" component={EventDesc} />
       </Switch>
       </div>
     )

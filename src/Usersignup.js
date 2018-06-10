@@ -14,45 +14,99 @@ export default class Usersignup extends React.Component {
 
 	}
 
-	handleSubmit(event) {
+	async fetchData( ) {
+
+		//url + `/api/0.1/company/${window.username}`
+		try {
+
+		//	console.log("sending request:", url + `/api/0.1/companies/${window.sessionStorage.getItem("username")}`)
+
+
+	    	let response = await fetch( url + `/api/0.1/companies` )
+	    	console.log(response)
+	    
+	    	this.companyList = await response.json();
+
+			this.setState({})
+
+		} catch (e) {
+
+       		console.log(e)
+       		this.companyList = []
+
+       	}
+	  
+	}
+
+	componentDidMount(props) {
+
+		//try {
+       	this.fetchData()
+
+    }
+
+	async handleSubmit(event) {
 		event.preventDefault()
 		const data = new FormData(event.target)
 
-		fetch( url + '/api/0.1/user/create', {
+		data.append("accountType", "member")
+
+
+		console.log("data", data)
+
+		let resp = await fetch( url + '/api/0.1/users/create', {
 			method: 'POST',
 			body: data,
+			headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' } 
 		})
+
+		window.sessionStorage.setItem("usersignup", true)
+
+		console.log("resp:", resp)
+		//let body = await resp.body.json()
+		console.log("body:", resp.body)
 	}
 
 	render() {
 
 		//let companyList = {this.props}
-		let companyList = [ 'foo', 'bar' ]
+		let companyList = this.companyList ?  this.companyList: []
 
-		return (
+		// [ [id, string] , ...]
+
+		//return window.usersignup ? (<Redirect to= { '/userdashboard' } /> ) :
+		 return (
 			<Container>
-				<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3>Sign up Form -  Company User </h3>	</Col></Row>
-				<Row> <Col sm={{ size: 3 }}>
-			<form onSubmit={this.handleSubmit}>
-				<FormGroup>
-				<Label for="name" > Name </Label>
-				<Input type="text" name="name" id="name" />
-				</FormGroup>
-				<FormGroup>
-				<Label for="password" > Password </Label>
-				<Input type="password" name="password" id="password" />
-				</FormGroup>
-				<FormGroup>
-					<Label for="type"> Category </Label>
-					<Input type="select" name="category" id="type" >
-					{companyList.map( (company, i) => { return ( <option id={i}> company </option> ) }) }
-					</Input>
-				</FormGroup>
-				<Button type="submit"> Submit </Button>
-			</form>
-		</Col>
-		</Row>
-	</Container>
+					<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3>Sign up Form -  Company User </h3>	</Col></Row>
+					<Row> <Col sm={{ size: 3 }}>
+				<form onSubmit={this.handleSubmit}>
+					<FormGroup>
+					<Label for="name" > Name </Label>
+					<Input type="text" name="username" id="name" />
+					</FormGroup>
+					<FormGroup>
+					<Label for="password" > Password </Label>
+					<Input type="password" name="password" id="password" />
+					</FormGroup>
+					<FormGroup>
+						<Label for="type"> Category </Label>
+						<Input type="select" name="companyId" id="type" >
+						{companyList.map( (company, i) => { return ( <option value={company._id} id={i} key={i}> {company.name} </option> ) }) }
+						</Input>
+					</FormGroup>
+					<FormGroup>
+					<Label for="firstname" > First name </Label>
+					<Input type="text" name="firstname" id="firstname" />
+					</FormGroup>
+					<FormGroup>
+					<Label for="lastname" > Last name </Label>
+					<Input type="text" name="lastname" id="lastname" />
+					</FormGroup>
+					<Button type="submit"> Submit </Button>
+				</form>
+			</Col>
+			</Row>
+		</Container>
 
 		)
 	}

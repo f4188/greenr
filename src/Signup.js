@@ -23,6 +23,8 @@ export default class Signup extends React.Component {
 		
 		const data = new FormData(event.target)
 
+	//	data.append("companyName", )
+
 		console.log("Form Data:")
 		console.log("Company name:",data.get("companyName"))
 		console.log("Website:", data.get("companyWebsite"))
@@ -35,12 +37,10 @@ export default class Signup extends React.Component {
 		window.username = data.get("username")
 		window.sessionStorage.setItem("username", data.get("username"))
 
-
-
-
-		await fetch( url + '/api/0.1/company/create', {
+		let resp = await fetch( url + '/api/0.1/company/create', {
 			method: 'POST',
 			body: data,
+			headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' }
 		})
 
 		this.setState({})

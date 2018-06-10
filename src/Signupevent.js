@@ -14,9 +14,10 @@ export default class Signupevent extends React.Component {
 		event.preventDefault()
 		const data = new FormData(event.target)
 
-		fetch('/api/', {
+		fetch('/api/0.1/', {
 			method: 'POST',
-			body: dataa,
+			body: data,
+			headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' }
 		})
 	}
 	
