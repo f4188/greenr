@@ -2,29 +2,39 @@
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
 import { Container, Row, Col } from 'reactstrap';
+import { Redirect } from 'react-router-dom'
 //http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 export default class Signup extends React.Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props)
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
-	handleSubmit(event) {
+	async handleSubmit(event) {
 		event.preventDefault()
 		const data = new FormData(event.target)
 
-		fetch( url + '/api/company/create', {
+		await fetch( url + '/api/company/create', {
 			method: 'POST',
 			body: data,
 		})
+
+		window.signedup = true
+		window.username = data.username
+
+		this.setState({})
+
+		//window.username = data.
+
 	}
 
 	render() {
 
-		return (
+		return window.signedup ?  (<Redirect to= {`/company/${window.username}`} /> ) :
+		(
 			<Container>
         <Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3>Sign up Form -  Company Admin </h3>	</Col></Row>
 				<Row> <Col sm={{ size: 3 }}>
@@ -42,8 +52,8 @@ export default class Signup extends React.Component {
 					<Input type="text" name="companyLogo" id="logo" />
 				</FormGroup>
 				<FormGroup>
-					<Label for="email"> Username </Label>
-					<Input type="email" name="username" id="email" />
+					<Label for="username"> Username </Label>
+					<Input type="username" name="username" id="username" />
 				</FormGroup>
 				<FormGroup>
 					<Label for="password"> password </Label>

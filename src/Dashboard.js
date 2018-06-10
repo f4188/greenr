@@ -2,23 +2,36 @@ import React from 'react'
 import fetch from 'isomorphic-fetch'
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown} from 'reactstrap'
+
 import { Container, Row, Col } from 'reactstrap'
+
+import { Link } from 'react-router-dom'
 
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 export default class Dashboard extends React.Component {
 
-	async fetchData( cid ) {
+	async fetchData( ) {
 
-	    let response = await fetch( url + "/api/")
+	    let response = await fetch( url + `/api/company/${window.username}` )
 	    
 	    return await response.json();
 	  
 	}
 
+	async fetchCompanyList() {
+
+		let response = await fetch( url + `/api/companies` )
+		return await response.json()
+
+	}
+
+
+
 	componentWillReceiveProps(nextProps) {
 
-       let data = this.fetchData()
+       this.data = this.fetchData()
+       this.companyList = this.fetchCompanyList()
     
     }
 	
@@ -31,7 +44,17 @@ export default class Dashboard extends React.Component {
 				</Row>
 
 				<Row>
-				<Col xs="2"> </Col>
+				<Col xs="2"> 
+					<Row>
+						<Link to="" > Members </Link>
+					</Row>
+					<Row>
+						Events
+					</Row>
+					<Row>
+						Rewards
+					</Row>
+				</Col>
 				<Col xs="10"> </Col>
 				</Row>
 			</Container>
