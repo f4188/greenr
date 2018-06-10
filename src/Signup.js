@@ -36,12 +36,12 @@ export default class Signup extends React.Component {
 					<Input type="text" name="companyWebsite" id="website" />
 				</FormGroup>
 				<FormGroup>
-					</Label for="logo"> </Label>
+					<Label for="logo"> </Label>
 					<Input type="text" name="companyLogo" id="logo" />
 				</FormGroup>
 				<FormGroup>
 					<Label for="email"> Email </Label>
-					<Input type="email" name="email" id="email">
+					<Input type="email" name="email" id="email" />
 				</FormGroup>
 				<FormGroup>
 					<Label for="password"> password </Label>
@@ -56,7 +56,7 @@ export default class Signup extends React.Component {
 				</FormGroup>
 				<FormGroup>
 					<Label for="first"> First name </Label>
-					<Input type="text' name="firstname" id="first" />
+					<Input type="text" name="firstname" id="first" />
 				</FormGroup>
 				<FormGroup>
 					<Label for="last"> Last name </Label>

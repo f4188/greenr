@@ -1,11 +1,11 @@
 
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 
-export default class Events extends React.Component {
+export default class Event extends React.Component {
 
 	constructor() {
 		super();
@@ -45,7 +45,7 @@ export default class Events extends React.Component {
 				</FormGroup>
 				<FormGroup>
 					<Label for="type"> Category </Label>
-					<Input type="select" name="category" id="type" />
+					<Input type="select" name="category" id="type">
 					<option> Something </option>
 					<option> Somethingelse </option>
 					</Input>
@@ -58,7 +58,7 @@ export default class Events extends React.Component {
 					<Label for="username" > User </Label>
 					<Input type="text" name="username" id="username" />
 				</FormGroup>
-				<Button onClick={this.handleSubmit}>Submit</Button>
+				<Button onClick={this.handleSubmit}> Submit</Button>
 			</Form>
 
 		)
