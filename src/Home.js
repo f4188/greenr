@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'react'
+import { Container, Row, Col } from 'reactstrap'
 
 import { Jumbotron } from 'reactstrap'
 
@@ -18,6 +18,3 @@ export default class Home extends Component {
     )
   }
 }
-
-
-
