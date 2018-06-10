@@ -2,7 +2,6 @@ import React from 'react'
 import fetch from 'isomorphic-fetch'
 
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown} from 'reactstrap'
-
 import { Container, Row, Col } from 'reactstrap'
 
 import { Link } from 'react-router-dom'
@@ -25,8 +24,6 @@ export default class Dashboard extends React.Component {
 		return await response.json()
 
 	}
-
-
 
 	componentWillReceiveProps(nextProps) {
 
@@ -55,7 +52,26 @@ export default class Dashboard extends React.Component {
 						Rewards
 					</Row>
 				</Col>
-				<Col xs="10"> </Col>
+				<Col xs="10"> 
+
+					<Form>
+					<FormGroup>
+						<Label> Invite </Label>
+						<Input> </Input>
+						<Button> </Button>
+					</FormGroup>
+
+					</Form>
+						<Label> </Label>
+						<Input> </Input>
+						<Button> </Button>
+						
+
+					<Form>
+					</Form>
+
+
+				</Col>
 				</Row>
 			</Container>
 		)
