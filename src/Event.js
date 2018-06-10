@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
+import { Row, Col, Container } from 'reactstrap'
 
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
@@ -25,6 +26,10 @@ export default class Event extends React.Component {
 	render() {
 
 		return (
+
+			<Container>
+					<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3> Create event </h3>	</Col></Row>
+					<Row> <Col sm={{ size: 3 }}>
 
 			<Form>
 				<FormGroup>
@@ -60,6 +65,10 @@ export default class Event extends React.Component {
 				</FormGroup>
 				<Button onClick={this.handleSubmit}> Submit</Button>
 			</Form>
+
+			</Col>
+			</Row>
+		</Container>
 
 		)
 	}

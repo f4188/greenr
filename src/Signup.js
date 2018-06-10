@@ -23,8 +23,6 @@ export default class Signup extends React.Component {
 		
 		const data = new FormData(event.target)
 
-	//	data.append("companyName", )
-
 		console.log("Form Data:")
 		console.log("Company name:",data.get("companyName"))
 		console.log("Website:", data.get("companyWebsite"))
@@ -32,7 +30,6 @@ export default class Signup extends React.Component {
 
 		window.signedup = true
 		window.sessionStorage.setItem("signedup", true)
-		//window.username = data.username == undefined ? "companyname" : data.get("username")
 
 		window.username = data.get("username")
 		window.sessionStorage.setItem("username", data.get("username"))

@@ -11,6 +11,8 @@ import Userdashboard from './Userdashboard.js'
 import Members from './Members.js'
 import EventDesc from './EventDesc.js'
 
+import Rewards from './Rewards.js'
+
 class App extends Component {
 
   render() {
@@ -25,7 +27,13 @@ class App extends Component {
         <Route path='/events' component={Event} />
         <Route path='/userdashboard' component={Userdashboard} />
         <Route path='/members' component={Members} />
-        <Route path="/eventdesc" component={EventDesc} />
+        
+
+        <Route path="/eventdesc"render={ (props)=><EventDesc eventId={100} /> } />
+
+
+
+        <Route path="/rewards" component={Rewards} />
       </Switch>
       </div>
     )

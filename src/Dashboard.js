@@ -14,31 +14,33 @@ export default class Dashboard extends React.Component {
 
 	async fetchData( ) {
 
-		//url + `/api/0.1/company/${window.username}`
 		try {
 
-		console.log("sending request:", url + `/api/0.1/companies/${window.sessionStorage.getItem("username")}`)
+			console.log("sending request:", url + `/api/0.1/companies/${window.sessionStorage.getItem("username")}`)
 
+		    let response = await fetch( url + `/api/0.1/companies/${window.sessionStorage.getItem("username")}` )
+		    console.log(response)
+		    
+		    this.data = await response.json();
 
-	    let response = await fetch( url + `/api/0.1/companies/${window.sessionStorage.getItem("username")}` )
-	    console.log(response)
-	    
-	    this.data = await response.json();
+		    let response2 = await fetch( url + `/api/0.1/companies` )
+			this.companyList = await response2.json()
 
-	    let response2 = await fetch( url + `/api/0.1/companies` )
-		this.companyList = await response2.json()
+			//let eventList = await fetch( url + `/api/0.1/companies/${window.sessionStorage.getItem() })
 
-		this.setState({})
+			this.setState({})
 
 		} catch (e) {
+
        		console.log(e)
+
        	}
 	  
 	}
 
+
 	componentDidMount(nextProps) {
 
-		//try {
        	this.fetchData()
 
     }
@@ -80,12 +82,10 @@ export default class Dashboard extends React.Component {
 					<Row style={{ 'margin-top' : '10px'}}>
 					<Col>
 					
-					<Form inline>
+					
 
-					<Label for="newevent"> Add event </Label> &nbsp;
-						<Input type="text" name="newevent" id="newevent"> </Input>
-						<Button> + </Button>
-					</Form>
+						 <a href="/events"><Button> Create Event </Button> </a>{' '}
+				
 					</Col>
 					</Row>
 
@@ -102,7 +102,7 @@ export default class Dashboard extends React.Component {
 					      <Card body key={i}>
 					        <CardTitle> Event # {i}</CardTitle>
 					        <CardText> Some event.</CardText>
-					        <a href="/eventdesc"><Button color="primary"> Go </Button></a>{' '}
+					        <a href="/eventdesc"><Button color="primary"> Add </Button></a>{' '}
 					      
 					      </Card>
 					    </CardColumns>

@@ -57,10 +57,11 @@ export default class Userdashboard extends React.Component {
 
 						return (
 						<CardColumns>
-					      <Card body id={i}>
+					      <Card body id={i} key={i}>
 					        <CardTitle> Event # {i}</CardTitle>
 					        <CardText> Some event.</CardText>
-					        <Button> Join </Button>
+					     
+					         <a href="/eventdesc"><Button color="primary"> Join </Button></a>{' '}
 					      </Card>
 					    </CardColumns>
 				      )

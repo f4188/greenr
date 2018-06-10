@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'reactstrap'
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 
-export default class EventDesc extends React.Component {
+export default class Rewards extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -26,33 +26,16 @@ export default class EventDesc extends React.Component {
 		})
 
 		let eventData = await resp.json()
-
+		
 	}
 	
 	render() {
 
 		return (
 			<Container>
-				<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3> Event Description </h3> 	</Col></Row>
+				<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3> Rewards </h3> 	</Col></Row>
 
-				<Row>
-					<p> name: </p>
-				</Row>
-				<Row>
-					<p> description: </p>
-				</Row>
-				<Row>
-					<p> category: </p>
-				</Row>
-				<Row>
-					<p> points: </p>
-				</Row>
-				<Row>
-					<p> time: </p>
-				</Row>
-				<Row>
-					<Button> Signup </Button>
-				</Row>
+				
 			
 			</Container>
 		)

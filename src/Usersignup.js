@@ -3,6 +3,8 @@ import React from 'react'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { Container, Row, Col } from 'reactstrap';
 
+import { Redirect } from 'react-router-dom'
+
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 
@@ -54,17 +56,24 @@ export default class Usersignup extends React.Component {
 
 		console.log("data", data)
 
+		window.sessionStorage.setItem("usersignup", true)
+		window.usersignup = true
+		window.sessionStorage.setItem("username", data.get("username"))
+
 		let resp = await fetch( url + '/api/0.1/users/create', {
 			method: 'POST',
 			body: data,
 			headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' } 
 		})
 
-		window.sessionStorage.setItem("usersignup", true)
+
+		//window.sessionStorage.setItem("username", data.get("username"))
 
 		console.log("resp:", resp)
 		//let body = await resp.body.json()
 		console.log("body:", resp.body)
+
+		this.setState({})
 	}
 
 	render() {
@@ -73,9 +82,11 @@ export default class Usersignup extends React.Component {
 		let companyList = this.companyList ?  this.companyList: []
 
 		// [ [id, string] , ...]
+	//	console.log("signedup", window.)
 
-		//return window.usersignup ? (<Redirect to= { '/userdashboard' } /> ) :
-		 return (
+		return window.usersignup ? (<Redirect to= { '/userdashboard' } /> ) :
+		// return (
+		(
 			<Container>
 					<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3>Sign up Form -  Company User </h3>	</Col></Row>
 					<Row> <Col sm={{ size: 3 }}>
