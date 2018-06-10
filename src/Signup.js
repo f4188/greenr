@@ -20,7 +20,7 @@ export default class Signup extends React.Component {
 		event.preventDefault()
 
 		console.log(event)
-		
+
 		const data = new FormData(event.target)
 
 	//	data.append("companyName", )
@@ -36,10 +36,16 @@ export default class Signup extends React.Component {
 
 		window.username = data.get("username")
 		window.sessionStorage.setItem("username", data.get("username"))
-
+		var formBody = [];
+		for (var key of data.keys()) {
+			var encodedKey = encodeURIComponent(key);
+			var encodedValue = encodeURIComponent(data.get(key));
+			formBody.push(encodedKey + "=" + encodedValue);
+		}
+		formBody = formBody.join("&");
 		let resp = await fetch( url + '/api/0.1/company/create', {
 			method: 'POST',
-			body: data,
+			body: formBody,
 			headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' }
 		})
 

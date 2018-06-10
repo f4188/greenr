@@ -24,7 +24,7 @@ export default class Usersignup extends React.Component {
 
 	    	let response = await fetch( url + `/api/0.1/companies` )
 	    	console.log(response)
-	    
+
 	    	this.companyList = await response.json();
 
 			this.setState({})
@@ -35,7 +35,7 @@ export default class Usersignup extends React.Component {
        		this.companyList = []
 
        	}
-	  
+
 	}
 
 	componentDidMount(props) {
@@ -51,20 +51,26 @@ export default class Usersignup extends React.Component {
 
 		data.append("accountType", "member")
 
-
 		console.log("data", data)
+
+		var formBody = [];
+		for (var key of data.keys()) {
+		  var encodedKey = encodeURIComponent(key);
+		  var encodedValue = encodeURIComponent(data.get(key));
+		  formBody.push(encodedKey + "=" + encodedValue);
+		}
+		formBody = formBody.join("&");
 
 		let resp = await fetch( url + '/api/0.1/users/create', {
 			method: 'POST',
-			body: data,
-			headers: { 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8' } 
+			body: formBody,
+			headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
 		})
 
 		window.sessionStorage.setItem("usersignup", true)
-
-		console.log("resp:", resp)
+		const response = await resp.json();
+		console.log("resp:", response)
 		//let body = await resp.body.json()
-		console.log("body:", resp.body)
 	}
 
 	render() {
