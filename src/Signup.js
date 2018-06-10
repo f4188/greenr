@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
-
+import { Container, Row, Col } from 'reactstrap';
 //http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
@@ -25,34 +25,29 @@ export default class Signup extends React.Component {
 	render() {
 
 		return (
-
+			<Container>
+        <Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3>Sign up Form -  Company Admin </h3>	</Col></Row>
+				<Row> <Col sm={{ size: 3 }}>
 			<Form>
 				<FormGroup>
-					<Label for="company"> Company </Label>
+					<Label for="company"> Company Name </Label>
 					<Input type="text" name="companyName" id="company" />
 				</FormGroup>
 				<FormGroup>
-					<Label for="Website"> Company Website </Label>
+					<Label for="Website"> Company Website Address </Label>
 					<Input type="text" name="companyWebsite" id="website" />
 				</FormGroup>
 				<FormGroup>
-					<Label for="logo"> </Label>
+					<Label for="logo"> Company Logo URL </Label>
 					<Input type="text" name="companyLogo" id="logo" />
 				</FormGroup>
 				<FormGroup>
-					<Label for="email"> Email </Label>
-					<Input type="email" name="email" id="email" />
+					<Label for="email"> Username </Label>
+					<Input type="email" name="username" id="email" />
 				</FormGroup>
 				<FormGroup>
 					<Label for="password"> password </Label>
 					<Input type="password" name="password" id="password"/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="type"> Account Type </Label>
-					<Input type="select" name="accountType" id="type">
-					<option> Company </option>
-					<option> Somethingelse </option>
-					</Input>
 				</FormGroup>
 				<FormGroup>
 					<Label for="first"> First name </Label>
@@ -64,6 +59,10 @@ export default class Signup extends React.Component {
 				</FormGroup>
 				<Button onClick={this.handleSubmit}> Submit </Button>
 			</Form>
+		</Col>
+		</Row>
+	</Container>
+
 
 		)
 	}
