@@ -14,24 +14,24 @@ export default class Dashboard extends React.Component {
 
 	async fetchData( ) {
 
-	    let response = await fetch( url + `/api/company/${window.username}` )
+		//url + `/api/0.1/company/${window.username}`
+		console.log("sending request:", url + `/api/0.1/company/${window.sessionStorage.getItem("username")}`)
+	    let response = await fetch( url + `/api/0.1/company/${window.sessionStorage.getItem("username")}` )
+	    console.log(response)
 	    
-	    return await response.json();
+	    this.data = await response.json();
+
+	    let response2 = await fetch( url + `/api/0.1/companies` )
+		this.companyList = await response2.json()
+
+		this.setState({})
 	  
 	}
 
-	async fetchCompanyList() {
+	componentDidMount(nextProps) {
 
-		let response = await fetch( url + `/api/companies` )
-		return await response.json()
+       this.fetchData()
 
-	}
-
-	componentWillReceiveProps(nextProps) {
-
-       this.data = this.fetchData()
-       this.companyList = this.fetchCompanyList()
-    
     }
 	
 	render() {
@@ -90,7 +90,7 @@ export default class Dashboard extends React.Component {
 
 						return (
 						<CardColumns>
-					      <Card body id={i}>
+					      <Card body key={i}>
 					        <CardTitle> Event # {i}</CardTitle>
 					        <CardText> Some event.</CardText>
 					        <Button> Go </Button>

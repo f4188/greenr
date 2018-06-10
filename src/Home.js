@@ -34,13 +34,10 @@ export default class Home extends Component {
 						</Container>
 				</Jumbotron>
 
-				
-
-
-
 				<Container>
-<Row>
-<Col >
+					<Row>
+
+						<Col>
 		     			<h2> How it works </h2>
 
 		     			<h3> Register </h3>
@@ -59,10 +56,10 @@ export default class Home extends Component {
 
 		     			<p> Users can know how much economic impact they have made and also can redeem points </p>
 
-</Col>
-</Row>		
+				</Col>
+			</Row>		
 
-	</Container>
+				</Container>
 
 		     </div>
 	    )

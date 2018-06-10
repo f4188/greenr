@@ -1,6 +1,9 @@
 
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Form, Label, Input, FormText } from 'reactstrap'
+
+import { Button, FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+
 import { Container, Row, Col } from 'reactstrap';
 import { Redirect } from 'react-router-dom'
 //http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086
@@ -15,30 +18,43 @@ export default class Signup extends React.Component {
 
 	async handleSubmit(event) {
 		event.preventDefault()
+
+		console.log(event)
+		
 		const data = new FormData(event.target)
 
-		await fetch( url + '/api/company/create', {
+		console.log("Form Data:")
+		console.log("Company name:",data.get("companyName"))
+		console.log("Website:", data.get("companyWebsite"))
+		console.log("Username:", data.get("username"))
+
+		window.signedup = true
+		window.sessionStorage.setItem("signedup", true)
+		//window.username = data.username == undefined ? "companyname" : data.get("username")
+
+		window.username = data.get("username")
+		window.sessionStorage.setItem("username", data.get("username"))
+
+
+
+
+		await fetch( url + '/api/0.1/company/create', {
 			method: 'POST',
 			body: data,
 		})
 
-		window.signedup = true
-		window.username = data.username
-
 		this.setState({})
-
-		//window.username = data.
 
 	}
 
 	render() {
 
-		return window.signedup ?  (<Redirect to= {`/company/${window.username}`} /> ) :
+		return window.signedup ? (<Redirect to= { '/dashboard' } /> ) :
 		(
-			<Container>
+		<Container>
         <Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3>Sign up Form -  Company Admin </h3>	</Col></Row>
 				<Row> <Col sm={{ size: 3 }}>
-			<Form>
+			<form onSubmit={this.handleSubmit}>
 				<FormGroup>
 					<Label for="company"> Company Name </Label>
 					<Input type="text" name="companyName" id="company" />
@@ -67,8 +83,8 @@ export default class Signup extends React.Component {
 					<Label for="last"> Last name </Label>
 					<Input type="text" name="lastname" id="last" />
 				</FormGroup>
-				<Button onClick={this.handleSubmit}> Submit </Button>
-			</Form>
+				<Button type="submit"> Submit </Button>
+			</form>
 		</Col>
 		</Row>
 	</Container>

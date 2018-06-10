@@ -18,7 +18,7 @@ export default class Usersignup extends React.Component {
 		event.preventDefault()
 		const data = new FormData(event.target)
 
-		fetch( url + '/api/user/create', {
+		fetch( url + '/api/0.1/user/create', {
 			method: 'POST',
 			body: data,
 		})
@@ -33,7 +33,7 @@ export default class Usersignup extends React.Component {
 			<Container>
 				<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3>Sign up Form -  Company User </h3>	</Col></Row>
 				<Row> <Col sm={{ size: 3 }}>
-			<Form>
+			<form onSubmit={this.handleSubmit}>
 				<FormGroup>
 				<Label for="name" > Name </Label>
 				<Input type="text" name="name" id="name" />
@@ -48,8 +48,8 @@ export default class Usersignup extends React.Component {
 					{companyList.map( (company, i) => { return ( <option id={i}> company </option> ) }) }
 					</Input>
 				</FormGroup>
-				<Button onClick={this.handleSubmit}> Submit </Button>
-			</Form>
+				<Button type="submit"> Submit </Button>
+			</form>
 		</Col>
 		</Row>
 	</Container>

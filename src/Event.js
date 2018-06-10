@@ -16,7 +16,7 @@ export default class Event extends React.Component {
 		event.preventDefault()
 		const data = new FormData(event.target)
 
-		fetch( url + '/api/event/create', {
+		fetch( url + '/api/0.1/event/create', {
 			method: 'POST',
 			body: data,
 		})

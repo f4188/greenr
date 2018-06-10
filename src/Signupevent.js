@@ -24,10 +24,20 @@ export default class Signupevent extends React.Component {
 
 		return (
 
-			<div>
-
-			</div>
-			<Button onClick={this.handleSubmit}> Submit </Button>
+			<Container>
+				<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3> Signup to Event </h3>	</Col></Row>
+				<Row> <Col sm={{ size: 3 }}>
+			<form onSubmit={this.handleSubmit}>
+				<FormGroup>
+				<Label for="name" > Name </Label>
+				<Input type="text" name="name" id="name" />
+				</FormGroup>
+				
+				<Button type="submit"> Signup </Button>
+			</form>
+		</Col>
+		</Row>
+	</Container>
 
 		)
 	}
