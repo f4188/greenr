@@ -4,6 +4,21 @@ import React from 'react'
 import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
 
 export default class Signin extends React.Component {
+
+	constructor() {
+		super();
+		this.handleSubmit = this.handleSubmit.bind(this)
+	}
+
+	handleSubmit(event) {
+		event.preventDefault()
+		const data = new FormData(event.target)
+
+		fetch('/api/', {
+			method: 'POST',
+			body: data,
+		})
+	}
 	
 	render() {
 
@@ -19,9 +34,12 @@ export default class Signin extends React.Component {
 				<Input type="password" name="password" id="password" />
 				</FormGroup>
 				<FormGroup>
-				<Label for="company" > Company </Label>
-				<Input type="text" name="text" id="text" />
+					<Label for="type"> Category </Label>
+					<Input type="select" name="category" id="type" />
+					<option> Something </option>
+					</Input>
 				</FormGroup>
+				<Button onClick={this.handleSubmit}> Submit </Button>
 			</Form>
 			
 

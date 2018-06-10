@@ -11,25 +11,22 @@ export default class Events extends React.Component {
 
 			<Form>
 				<FormGroup>
-					<Label for="company"> Company </Label>
-					<Input type="text" name="" id="company"> </Input>
+					<Label for="name"> Name </Label>
+					<Input type="text" name="name" id="name"> </Input>
 				</FormGroup>
 				<FormGroup>
-					<Label for="name"> Company </Label>
-					<Input type="text" name="" id="name"> </Input>
+					<Label for="description"> Description </Label>
+					<Input type="textarea" name="description" id="description"> </Input>
 				</FormGroup>
 				<FormGroup>
-					<Label for="Website"> Company </Label>
+					<Label for="Image"> Image </Label>
 					<Input type="text" name="" id="website"> </Input>
 				</FormGroup>
 				<FormGroup>
-					<Label for="email"> Email </Label>
-					<Input type="email" name="email" id="email">
+					<Label for="text"> Points </Label>
+					<Input type="text" name="text" id="text">
 				</FormGroup>
-				<FormGroup>
-					<Label for="password"> password </Label>
-					<Input type="password" name="" id="password"> </Input>
-				</FormGroup>
+				<Button>Submit</Button>
 			</Form>
 
 		)
