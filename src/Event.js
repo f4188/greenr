@@ -7,8 +7,8 @@ const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 export default class Event extends React.Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 

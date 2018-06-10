@@ -5,8 +5,8 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 export default class Signupevent extends React.Component {
 
-	constructor() {
-		super()
+	constructor(props) {
+		super(props)
 		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
