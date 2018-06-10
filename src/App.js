@@ -29,7 +29,7 @@ class App extends Component {
         <Route path='/members' component={Members} />
         
 
-        <Route path="/eventdesc"render={ (props)=><EventDesc eventId={100} /> } />
+        <Route path="/eventdesc" render={ (props)=><EventDesc /> } />
 
 
 
