@@ -6,7 +6,7 @@ import { Container, Row, Col } from 'reactstrap'
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 
-export default class EventDesc extends React.Component {
+export default class EventSummary extends React.Component {
 
 	constructor(props) {
 		super(props);

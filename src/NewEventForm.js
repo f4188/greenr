@@ -6,7 +6,7 @@ import { Row, Col, Container } from 'reactstrap'
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
 
-export default class Event extends React.Component {
+export default class NewEventForm extends React.Component {
 
 	constructor(props) {
 		super(props);

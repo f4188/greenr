@@ -16,6 +16,7 @@ import Rewards from './Rewards.js'
 class App extends Component {
 
   render() {
+    
     return (
       <div>
       <Switch>

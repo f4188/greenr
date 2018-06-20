@@ -38,7 +38,6 @@ export default class Dashboard extends React.Component {
 	  
 	}
 
-
 	componentDidMount(nextProps) {
 
        	this.fetchData()
@@ -81,8 +80,6 @@ export default class Dashboard extends React.Component {
 
 					<Row style={{ 'margin-top' : '10px'}}>
 					<Col>
-					
-					
 
 						 <a href="/events"><Button> Create Event </Button> </a>{' '}
 				
