@@ -1,21 +1,19 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Router, Route, Link, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Redirect } from 'react-router-dom'
 
-//import getMuiTheme from 'material-ui/styles/getMuiTheme'
-//import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
-//general components
-import HomePage from './components/HomePage.js'
-import SignupPage from './containers/SignupPage.js'
-import LoginPage from './containers/Login.js'
-import Logout from './components/Logout.js'
+import Home from './components/HomePage.js'
+import Signup from './containers/SignupPage.js'
+import Logout from './containers/Login.js'
+import Logout from './containers/Logout.js'
 
-import AdminDashboard from './containers/AdminDashboard.js'
-import Userdashboard from './containers/Userdashboard.js'
+import Dashboard from './containers/Dashboard.js'
 
 import Auth from './utils/Auth'
 
-const PrivateRoute = ( { component: Component, ...rest }) => (
+const PrivateRoute = ( { component: Component, ...rest }) => {
 
   <Route {...rest} render = {props => (
       Auth.isAthenticated() ? (
@@ -26,10 +24,10 @@ const PrivateRoute = ( { component: Component, ...rest }) => (
             state: { from: props.location }
           }}/>
         )
-    )} />
-)
+    )}/>
+}
 
-const LoggedOutRoute = ( { component: Component, ...rest } ) => (
+const LoggedOutRoute = ( { component: Component, ...rest } ) => ({
   <Route {...rest} render={props => (
     Auth.isAthenticated() ? (
       <Redirect to={{
@@ -40,7 +38,7 @@ const LoggedOutRoute = ( { component: Component, ...rest } ) => (
         <Component {...props} {...rest} />
       )
     )} />
-)
+})
 
 const PropsRoute = ( { component: Component, ...rest } ) => (
   <Route {...rest} render={props => (
@@ -65,7 +63,7 @@ class App extends Component {
 
   }
 
-  checkAuth() {
+  updateAuthStatus() {
 
     this.setState({ authenticated: Auth.isAthenticated() })
 
@@ -75,21 +73,16 @@ class App extends Component {
   render() {
     
     return (
-      <div>
-
+      <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router>
+          <div>
 
-
-
-          <AppBar position="static">
-
-            <Toolbar>
-
-              <div className="top-bar-left">
+            <div className="top-bar">
+              <div classNmae="top-bar-left">
                 <Link to="/"> </Link>
-              </div>
+            </div>
 
-            { this.state.authenticated ? (
+            {this.state.authenticated ? (
               <div> 
                 <Link to="/dashboard"> Dashboard </Link>
                 <Link to="/logout"> Logout </Link>
@@ -99,25 +92,20 @@ class App extends Component {
                 <Link to="/login"> Log in </Link>
                 <Link to="/signup"> Sign up </Link>
               </div>
-            ) }
+            )}
 
-            </Toolbar>
-
-          </AppBar>          
+          </div>
         
-          <Route exact path='/' component={HomePage} />
+          <Route exact path='/' component={HomePage} authStatus={()=>this.updateAuthStatus()} />
 
-          <LoggedOutRoute path='/login' component={LoginPage} />
-          <LoggedOutRoute path='/signup' component={SignupPage} />
+          <LoggedOutRoute path="/login" component={LoginPage} authStatus={()=>this.updateAuthStatus()} />
+          <LoggedOutRoute path="/signup" component={SignupPage} />
+          <Route path='logout' component={Logout} />
 
-          <PrivateRoute path='/dashboard' component={AdminDashboard} />
-          <PrivateRoute path='/userdashboard' component={UserDashboard} />
-
-          <Route path="/logout" component={Logout} />
+          <PrivateRoute path='/AdminDashboard' component={Dashboard} />
 
         </Router>
-
-      </div>
+      </MuiThemeProvider>
     )
   }
 }

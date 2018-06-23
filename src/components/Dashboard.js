@@ -1,17 +1,22 @@
 import React from 'react'
 import fetch from 'isomorphic-fetch'
 
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, UncontrolledDropdown} from 'reactstrap'
-import { Container, Row, Col } from 'reactstrap'
-import { Card, Button, CardTitle, CardText, CardColumns } from 'reactstrap';
-import { Form, FormGroup, Label, Input } from 'reactstrap'
 
 import { Link } from 'react-router-dom'
 
 const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
 
-export default class Dashboard extends React.Component {
+export default class DashboardPage extends React.Component {
 
+	constructor(props) {
+		super(props)
+
+		this.state = {
+
+		}
+	}
+
+	/*
 	async fetchData( ) {
 
 		try {
@@ -36,7 +41,7 @@ export default class Dashboard extends React.Component {
 
        	}
 	  
-	}
+	}*/
 
 	componentDidMount(nextProps) {
 
@@ -44,7 +49,12 @@ export default class Dashboard extends React.Component {
 
     }
 	
-	render() {
+    render() {
+
+    	return ( <Dasboard /> )
+    }
+
+	/*render() {
 
 		let eventList = [ "event1", "event2", "event3", "event4", "event5", "event5", "event6" ]
 
@@ -110,5 +120,5 @@ export default class Dashboard extends React.Component {
 				</Row>
 			</Container>
 		)
-	}
+	}*/
 }

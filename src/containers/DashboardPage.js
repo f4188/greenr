@@ -1,4 +1,5 @@
-
+import React from 'react'
+\
 class DashboardPage extends React.Component {
 	
 	constructor(props) {
@@ -7,6 +8,7 @@ class DashboardPage extends React.Component {
 		this.state = {
 
 		}
+
 	}
 
 	componentDidMount() {

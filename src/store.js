@@ -50,4 +50,4 @@ AppDispatcher.register(function(action) {
 
 })
 
-export {  }
+export { client }
