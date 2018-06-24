@@ -1,54 +1,56 @@
 
-import AppDispatcher from 'app-dispatcher.js'
+//import AppDispatcher from 'app-dispatcher.js'
 
-function createAdminAction( ) {
 
-	let action = { actionType : 'CREATE'}
-	AppDispatcher.dispatch(action)
-
-}
+function createForm() {}
 
 //name, email, password
-function createAccountAction(formData) {
+const signup = (formData) => ({
 
-	let action = { actionType : 'CREATE_ACCOUNT', payload : formData }
-	AppDispatcher.dispatch(action)
+	actionType : 'CREATE_ACCOUNT',
+	 payload : formData
+	//AppDispatcher.dispatch(action)
 
-}
-
-function loginAction(formData) {
-
-	let action = { actionType : 'LOGIN', payload : formData }
-	AppDispatcher.dispatch(action)
-
-}
-
-function createEventAction(formData) {
-
-	let action = { actionType : 'CREATE_EVENT', payload : formData }
-	AppDispatcher.dispatch(action)
-
-}
-
-AppDispatcher.register(function(action) {
-
-	switch(action.actionType) {
-
-		case "CREATE_ACCOUNT" :
-
-			let admin = action.payload.admin
-			
-			if(admin) {
-
-				
-		
-			} else {
-
-			}
-
-		break
-
-		case
-
-	}
 })
+
+//const login = (formData) => ({
+//	type : 'LOGIN', 
+//	payload : formData
+//})
+
+
+
+
+const createEvent = (formData) => ({
+	type : 'CREATE_EVENT', 
+	payload : formData
+})
+
+
+
+
+export const SIGNUP_BEGIN = 'SIGNUP_BEGIN'
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE'
+
+export const signupBegin = (signupInfo) => ({
+
+})
+
+export const signupSuccess = () => ({})
+export const signupFailure = () => ({})
+
+
+
+
+export const LOGIN_BEGIN = 'LOGIN_BEGIN'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+
+export const loginBegin = (loginInfo) => ({
+	type: LOGIN_BEGIN,
+	payload: {}
+})
+
+export const loginSuccess = () => ({})
+export const loginFailure = () => ({})

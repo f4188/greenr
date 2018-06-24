@@ -4,7 +4,7 @@ class Auth {
 		localStorage.setItem('token', token)
 	}
 
-	static isUserAthenticated() {
+	static isUserAuthenticated() {
 		return localStorage.getItem('token') !== null
 	}
 

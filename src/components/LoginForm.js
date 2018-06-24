@@ -2,9 +2,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import TextField from '@material-ui/core/TextField'
+
 const LoginForm = ({ onSubmit, onChange, errors, successMsg, user, checkAuth}) => {
 	
 	<Card className="container">
+		<CardContent>
 		<form action="/" onSubmit={onSubmit}>
 			<h2 className="card-heading"> Login </h2>
 
@@ -19,6 +24,7 @@ const LoginForm = ({ onSubmit, onChange, errors, successMsg, user, checkAuth}) =
 			</div>
 
 		</form>
+		</CardContent>
 	</Card>
 
 }

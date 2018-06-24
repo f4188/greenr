@@ -1,24 +1,46 @@
 import React from 'react'
-\
+import { connect } from 'react-redux'
+
+import AdminDashboard from '../components/AdminDashboard.js'
+
+import store from '../store.js'
+
+
+
 class DashboardPage extends React.Component {
 	
-	constructor(props) {
-		super(props)
-
-		this.state = {
-
-		}
-
-	}
-
 	componentDidMount() {
-
+		this.props.loadDashboard()
 	}
 
 	render() {
 
-		return (  <Dashboard /> )
+		const { error, loading, data } = this.props
+
+		return  (
+
+			<AdminDashboard/>
+		)
 
 	}
 
 }
+
+const mapStateToProps = state => ({
+	return {
+		error: state.dashboard.error,
+		loading: state.dashboard.loading,
+		data: state.dashboard.data
+	}
+})
+
+const mapDispatchToProps = dispatch => {
+	return {
+		'loadDashboard': () =>
+			dispatch({
+				type: ''
+			})
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)

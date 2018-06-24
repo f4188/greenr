@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
-import { BrowserRouter, Router, Route, Link, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom'
 
 //import getMuiTheme from 'material-ui/styles/getMuiTheme'
 //import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import Grid from '@material-ui/core/Grid'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
+import AppBar from '@material-ui/core/AppBar'
 
 //general components
-import HomePage from './components/HomePage.js'
+import HomePage from './containers/HomePage.js'
 import SignupPage from './containers/SignupPage.js'
-import LoginPage from './containers/Login.js'
+import LoginPage from './containers/LoginPage.js'
 import Logout from './components/Logout.js'
+import Header from './components/Header.js'
+import WithHeader from './containers/WithHeader.js'
 
-import AdminDashboard from './containers/AdminDashboard.js'
-import Userdashboard from './containers/Userdashboard.js'
+import AdminDashboard from './components/AdminDashboard.js'
+import UserDashboard from './components/UserDashboard.js'
 
-import Auth from './utils/Auth'
+import Auth from './Auth.js'
 
 const PrivateRoute = ( { component: Component, ...rest }) => (
 
   <Route {...rest} render = {props => (
-      Auth.isAthenticated() ? (
+      Auth.isUserAuthenticated() ? (
           <Component {...props} {...rest} />
         ) : (
           <Redirect to={{
@@ -31,7 +39,7 @@ const PrivateRoute = ( { component: Component, ...rest }) => (
 
 const LoggedOutRoute = ( { component: Component, ...rest } ) => (
   <Route {...rest} render={props => (
-    Auth.isAthenticated() ? (
+    Auth.isUserAuthenticated() ? (
       <Redirect to={{
         pathname: '/',
         state: { from: props.location }
@@ -54,8 +62,23 @@ class App extends Component {
 
     super(props) 
     this.state = {
-      authenticated: false
+      authenticated: false,
+      user: {
+
+      }
     }
+
+  }
+
+  componentDidMount() {
+
+//    user.addChangeListener(this.onChange)
+
+  }
+
+  componentWillUnmount() {
+
+  //  user.removeChangeListener(this.onChange)
 
   }
 
@@ -65,47 +88,30 @@ class App extends Component {
 
   }
 
+  onChange() {
+
+   // this.setState({user : user.get()})
+
+  }
+
   checkAuth() {
 
-    this.setState({ authenticated: Auth.isAthenticated() })
+    this.setState({ authenticated: Auth.isUserAuthenticated() })
 
   }
 
 
   render() {
+
+
+      //const Page = (
+      //    )
     
     return (
-      <div>
 
         <Router>
-
-
-
-          <AppBar position="static">
-
-            <Toolbar>
-
-              <div className="top-bar-left">
-                <Link to="/"> </Link>
-              </div>
-
-            { this.state.authenticated ? (
-              <div> 
-                <Link to="/dashboard"> Dashboard </Link>
-                <Link to="/logout"> Logout </Link>
-              </div>
-            ) : (
-              <div>
-                <Link to="/login"> Log in </Link>
-                <Link to="/signup"> Sign up </Link>
-              </div>
-            ) }
-
-            </Toolbar>
-
-          </AppBar>          
-        
-          <Route exact path='/' component={HomePage} />
+          <Switch>
+          <Route exact path='/' component={WithHeader(HomePage)} />
 
           <LoggedOutRoute path='/login' component={LoginPage} />
           <LoggedOutRoute path='/signup' component={SignupPage} />
@@ -114,10 +120,9 @@ class App extends Component {
           <PrivateRoute path='/userdashboard' component={UserDashboard} />
 
           <Route path="/logout" component={Logout} />
-
+          </Switch>
         </Router>
 
-      </div>
     )
   }
 }

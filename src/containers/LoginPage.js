@@ -1,19 +1,19 @@
 import React from 'react'
 
-import '../components/LoginForm.js'
+import LoginForm from '../components/LoginForm.js'
 
 class LoginPage extends React.Component {
 
 	constructor(props, context) {
 		super(props, context)
 
-		this.state = {
-			errors: {},
-			user: {
-				email: '',
-				password: ''
-			}
-		}
+		//this.state = {
+		//	errors: {},
+		//	user: {
+		//		email: '',
+		//		password: ''
+		//	}
+		//}
 
 		this.processForm = this.processForm.bind(this)
 		this.changeUser = this.changeUser.bind(this)
@@ -34,10 +34,10 @@ class LoginPage extends React.Component {
 	changeUser(e) {
 
 		const field = e.target.name
-		const user = this.state.user
+		const user = this.props.user //this.state.user
 		user[field] = e.target.value
 
-		this.setState({ user })
+		//this.setState({ user })
 
 	}
 
@@ -53,3 +53,5 @@ class LoginPage extends React.Component {
 		)
 	}
 }
+
+export default LoginPage

@@ -1,8 +1,8 @@
 import React from 'react'
 
-import Auth from '.../modules/Auth'
+import Auth from '../Auth.js'
 
-class Logout extends React.Component {
+export default class Logout extends React.Component {
 	
 	componentDidMount() {
 
