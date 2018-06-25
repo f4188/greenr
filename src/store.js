@@ -1,53 +1,38 @@
 
-import AppDispatcher from 'app-dispatcher.js'
-import { EventEmitter } from 'events'
 import assign from 'object-assign'
 
-let store =  assign({}, EventEmitter.prototype, {
-	
-	emitChange : function() {
 
-		this.emit('change')
+import { createStore } from 'redux'
 
+
+import reducer from './reducers.js'
+//import reducer from 'reducer'
+
+const initialState = {
+	isAdmin : false,
+	user : {
+		'firstname' : '',
+		'lastname' : '',
+		'lastname' : '',
+		'email' : '',
+		'password' : '',
+		'companyName' : '',
+		'logoUrl' : ''
 	},
-
-	addChangeListener: function(callback) {
-
-		this.on('change', callback)
-
+	dashboard : {
+		loading: false,
+		error: null,
+		data: {}
 	},
-
-	removeChangeListener: function(callback) {
-
-		this.removeListener('change', callback)
-
-	}
-
-})
-
-let client = assign({}, store.prototype, {
-
-	admin : false,
-	info : {
-		name : "",
-		companyName : "",
-		location : "",
-
+	signup: {
+		begin:false,
+		error: null
 	},
-	events : {},
-	employees : {}
+	login: {},
 
-})
 
-AppDispatcher.register(function(action) {
+}
 
-	switch(action.actionType) {
+const store = createStore(reducer, initialState)
 
-		case "" : 
-
-		break;
-	}
-
-})
-
-export { client }
+export default store

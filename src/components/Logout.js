@@ -2,6 +2,9 @@ import React from 'react'
 
 import Auth from '../Auth.js'
 
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+
 export default class Logout extends React.Component {
 	
 	componentDidMount() {
@@ -13,6 +16,13 @@ export default class Logout extends React.Component {
 
 	render() {
 
-		return( <div> Logging out </div> )
+		return( 
+			<div>
+				<Paper>
+					<Typography> Logging out </Typography>
+				</Paper>
+			</div> 
+		)
+			
 	}
 }

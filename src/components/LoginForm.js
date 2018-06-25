@@ -5,9 +5,12 @@ import PropTypes from 'prop-types'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
 
 const LoginForm = ({ onSubmit, onChange, errors, successMsg, user, checkAuth}) => {
 	
+	<div>
+	<Paper>
 	<Card className="container">
 		<CardContent>
 		<form action="/" onSubmit={onSubmit}>
@@ -26,6 +29,8 @@ const LoginForm = ({ onSubmit, onChange, errors, successMsg, user, checkAuth}) =
 		</form>
 		</CardContent>
 	</Card>
+	</Paper>
+	</div>
 
 }
 

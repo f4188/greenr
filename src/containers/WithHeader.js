@@ -11,6 +11,7 @@ export default function WithHeader(BaseComponent, { noHeader = false } = {} ) {
 
 				<div>
 					{noHeader ? null : <Header {...this.props} />}
+
 					<BaseComponent {...this.props} />
 					
 				</div>

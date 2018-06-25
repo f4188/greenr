@@ -1,38 +1,25 @@
 import React from 'react'
 import PropTypes from 'react'
 
-//import TabContainer from '@material-ui/core/TabContainer'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-//import SwipeableViews from '@material-ui/core/SwipeableViews'
 import AppBar from '@material-ui/core/AppBar'
 import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 import Grid from '@material-ui/core/Grid'
 
-//import AdminSignupForm from '../components/AdminSignupForm.js'
-//import UserSignupForm from '../components/UserSignupForm.js'
-
-//import { createAccountAction } from '../actions.js'
-
 import { connect } from 'react-redux'
-
 import store from '../store.js'
 
-import { AdminSignupForm, UserSignupForm } from '../components/SignupForm.js'
+import { AdminSignupForm } from '../components/SignupForm.js'
 
-//http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086
-
-class SignupPage extends React.Component {
+class NewChannelPage extends React.Component {
 
 	constructor(props, context) {
 		super(props, context)
 		this.processForm = this.processForm.bind(this)
 		this.changeUser = this.changeUser.bind(this)
-
-		this.state = { tabIndex : "0"}
-
-		this.handleTabChange = this.handleTabChange.bind(this)
 
 	}
 
@@ -72,20 +59,19 @@ class SignupPage extends React.Component {
 		return (
 
 			<div>
-			<Grid container xs={12} direction="column" alignItems="center">
-			<Grid item style={{ padding: 40}} xs={6}>
+				<Grid container xs={12} direction="column" alignItems="center">
+					<Grid item>
+					<Typography variant="headline"> Set up a new company channel </Typography>
+					<Typography variant="body1"> To set up a channel for your team, input your team information below and the contact
+information for the person who will be responsible for managing this channel, creating
+events and allocating administration permissions. </Typography>
+					</Grid>
+					<Grid item style={{ padding: 40}} xs={6}>
 
-			<AppBar position="static" color="default">
-				<Tabs value={this.state.tabIndex} onChange={this.handleTabChange}>
-				<Tab value={"0"} label="User" />
-				<Tab value={"1"} label="Admin" />
-				</Tabs>
-			</AppBar>
+					<AdminSignupForm />
 
-			{ this.state.tabIndex == "0" ? (<UserSignupForm processForm errors user changeUser/>) : (<AdminSignupForm />) }
-
-			</Grid>
-			</Grid>
+					</Grid>
+				</Grid>
 			</div>
 
 		)
@@ -110,9 +96,9 @@ const mapDispatchToProps = (dispatch) => {
 	}
 }
 
-SignupPage.contextTypes = {
+NewChannelPage.contextTypes = {
 }
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignupPage)
+export default connect(mapStateToProps, mapDispatchToProps)(NewChannelPage)

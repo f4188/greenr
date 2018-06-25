@@ -1,75 +1,39 @@
-
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { Row, Col, Container } from 'reactstrap'
 
-const url = 'http://ec2-13-58-24-20.us-east-2.compute.amazonaws.com:8086'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
 
+const NewEventForm = ({ onSubmit, onChange, errors, user }) => (
 
-export default class NewEventForm extends React.Component {
+	<div>
+		<Paper>
+		<Card>
+			<CardContent>
+			<form action="/" onSubmit={onSubmit}>
+				<h2 className="card-heading"> Sign Up </h2>
 
-	constructor(props) {
-		super(props);
-		this.handleSubmit = this.handleSubmit.bind(this)
-	}
+				{errors.summary && <p className="error-message">{errors.summary} </p>}
 
-	handleSubmit(event) {
-		event.preventDefault()
-		const data = new FormData(event.target)
+				<TextField floatingLabelText="First name" name="firstname" errorText={errors.name} onChange={onChange} value={user.name} />
 
-		fetch( url + '/api/0.1/event/create', {
-			method: 'POST',
-			body: data,
-		})
-	}
-	
-	render() {
+				<TextField floatingLabelText="Last name" name="lastname" errorText={errors.name} onChange={onChange} value={user.name} />
 
-		return (
+				<TextField floatingLabelText="Email" name="email" errorText={errors.name} onChange={onChange} value={user.name}/>
 
-			<Container>
-					<Row> <Col sm="12" md={{ size: 8, offset: 2 }}><h3> Create event </h3>	</Col></Row>
-					<Row> <Col sm={{ size: 3 }}>
+				<TextField floatingLabelText="Password" name="password" errorText={errors.name} onChange={onChange} value={user.name}/>
 
-			<Form>
-				<FormGroup>
-					<Label for="name"> Name </Label>
-					<Input type="text" name="name" id="name" />
-				</FormGroup>
-				<FormGroup>
-					<Label for="description"> Description </Label>
-					<Input type="textarea" name="description" id="description" />
-				</FormGroup>
-				<FormGroup>
-					<Label for="Image"> Image </Label>
-					<Input type="text" name="imageUrl" id="website" />
-				</FormGroup>
-				<FormGroup>
-					<Label for="points"> Points </Label>
-					<Input type="text" name="text" id="points" />
-				</FormGroup>
-				<FormGroup>
-					<Label for="type"> Category </Label>
-					<Input type="select" name="category" id="type">
-					<option> Something </option>
-					<option> Somethingelse </option>
-					</Input>
-				</FormGroup>
-				<FormGroup>
-					<Label for="datetime"> Date </Label>
-					<Input type="date" name="date" id="datetime"/>
-				</FormGroup>
-				<FormGroup>
-					<Label for="username" > User </Label>
-					<Input type="text" name="username" id="username" />
-				</FormGroup>
-				<Button onClick={this.handleSubmit}> Submit</Button>
-			</Form>
+				<TextField floatingLabelText="Company" name="companyName" errorText={errors.name} onChange={onChange} value={user.name}/>
 
-			</Col>
-			</Row>
-		</Container>
+				<TextField floatingLabelText="Company Logo URL" name="logoUrl" errorText={errors.name} onChange={onChange} value={user.name}/>
 
-		)
-	}
-}
+			</form>
+			</CardContent>
+		</Card>
+		</Paper>
+	</div>
+
+)
+
+export default EventForm

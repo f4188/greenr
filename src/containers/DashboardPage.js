@@ -1,11 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import AdminDashboard from '../components/AdminDashboard.js'
-
 import store from '../store.js'
 
-
+import AdminDashboard from '../components/AdminDashboard.js'
+import UserDashboard  from '../components/UserDashboard.js'
 
 class DashboardPage extends React.Component {
 	
@@ -36,11 +35,11 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
 	return {
-		'loadDashboard': () =>
-			dispatch({
-				type: ''
-			})
+		'loadDashboard': function {
+			dispatch()
+		}
 	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)
+

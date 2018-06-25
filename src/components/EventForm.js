@@ -1,27 +1,14 @@
+import React from 'react'
 
-<Form>
-				<FormGroup>
-					<Label for="name"> Name </Label>
-					<Input type="text" name="name" id="name"> </Input>
-				</FormGroup>
-				<FormGroup>
-					<Label for="description"> Description </Label>
-					<Input type="textarea" name="description" id="description"> </Input>
-				</FormGroup>
-				<FormGroup>
-					<Label for="Image"> Image </Label>
-					<Input type="text" name="" id="website"> </Input>
-				</FormGroup>
-				<FormGroup>
-					<Label for="text"> Points </Label>
-					<Input type="text" name="text" id="text">
-				</FormGroup>
-				<Button>Submit</Button>
-			</Form>
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import TextField from '@material-ui/core/TextField'
+import Paper from '@material-ui/core/Paper'
 
-const EventForm = ({ onSubmit, onChange, errors, user }) => (
+const NewEventForm = ({ onSubmit, onChange, errors, user }) => (
 
 	<div>
+		<Paper>
 		<Card>
 			<CardContent>
 			<form action="/" onSubmit={onSubmit}>
@@ -44,6 +31,9 @@ const EventForm = ({ onSubmit, onChange, errors, user }) => (
 			</form>
 			</CardContent>
 		</Card>
+		</Paper>
 	</div>
 
 )
+
+export default EventForm

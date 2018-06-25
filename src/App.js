@@ -17,6 +17,7 @@ import LoginPage from './containers/LoginPage.js'
 import Logout from './components/Logout.js'
 import Header from './components/Header.js'
 import WithHeader from './containers/WithHeader.js'
+import NewChannelPage from './containers/NewChannelPage.js'
 
 import AdminDashboard from './components/AdminDashboard.js'
 import UserDashboard from './components/UserDashboard.js'
@@ -57,18 +58,6 @@ const PropsRoute = ( { component: Component, ...rest } ) => (
 )
 
 class App extends Component {
-
-  constructor(props) {
-
-    super(props) 
-    this.state = {
-      authenticated: false,
-      user: {
-
-      }
-    }
-
-  }
 
   componentDidMount() {
 
@@ -114,9 +103,10 @@ class App extends Component {
           <Route exact path='/' component={WithHeader(HomePage)} />
 
           <LoggedOutRoute path='/login' component={LoginPage} />
-          <LoggedOutRoute path='/signup' component={SignupPage} />
+          <LoggedOutRoute path='/signup' component={WithHeader(SignupPage)} />
+          <LoggedOutRoute path='/createchannel' component={WithHeader(NewChannelPage)} />
 
-          <PrivateRoute path='/dashboard' component={AdminDashboard} />
+          <PrivateRoute path='/dashboard' component={WithHeader(AdminDashboard)} />
           <PrivateRoute path='/userdashboard' component={UserDashboard} />
 
           <Route path="/logout" component={Logout} />

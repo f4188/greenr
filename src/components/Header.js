@@ -8,6 +8,8 @@ import Avatar from '@material-ui/core/Avatar'
 
 import MenuDrop from './MenuDrop.js'
 
+import GetStartedButton from './GetStartedButton.js'
+
 import { Link } from 'react-router-dom'
 
 
@@ -27,11 +29,11 @@ function Header({ user }) {
 
 		<AppBar position="static" color="default">
 		<Toolbar>
-	       	<Grid container direction="row" justify="space-around" alignItems="center">
+	       	<Grid container direction="row" alignItems="left">
         		<Grid item sm={6} xs={1} style={{ textAlign: 'left'}}>
         			{!user ? (
-        			<Link to='/'>
-        			<Avatar />
+        			<Link to='/' style={{ textDecoration : 'none'}}>
+        			Greenr.
         			</Link> ) : null}
         		</Grid>
 	        </Grid>
@@ -65,12 +67,12 @@ function Header({ user }) {
 					</div>
 				) : (
 				<div>
-					<Link to="/login" as="/login">
+					<Link to="/login" style={{ textDecoration: 'none' }}>
 						<Button>Log in</Button>
 					</Link>
-					<Link to='/signup'>
-						<Button>Sign up</Button>
-					</Link>
+					
+					<GetStartedButton />
+
 				</div>
 				)}
 			</Grid>
